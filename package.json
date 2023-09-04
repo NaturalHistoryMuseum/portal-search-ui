@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "watch:vite": "vite --host 0.0.0.0 --port 9000",
+    "watch": "npm-run-all clean --parallel watch:*",
+    "build:vite": "vite build",
+    "build": "NODE_ENV=production npm-run-all clean build:*"
+  },
+  "dependencies": {
+    "@nhm-data/zoa": "^0.3.0",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.1",
+    "sass": "^1.66.1",
+    "vite": "^4.4.9"
+  },
+  "packageManager": "yarn@3.6.3"
+}

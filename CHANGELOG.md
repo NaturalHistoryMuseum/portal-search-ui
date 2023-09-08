@@ -1,3 +1,9 @@
+## v0.1.1 (2023-09-08)
+
+### Fix
+
+- use the correct build command
+
 ## v0.1.0 (2023-09-08)
 
 ### Feature

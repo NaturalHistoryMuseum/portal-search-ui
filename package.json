@@ -9,7 +9,7 @@
     "build": "NODE_ENV=production npm-run-all clean build:vite"
   },
   "dependencies": {
-    "@nhm-data/zoa": "^0.3.0",
+    "@nhm-data/zoa": "^0.3.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {

@@ -18,6 +18,5 @@
     "rimraf": "^5.0.1",
     "sass": "^1.66.1",
     "vite": "^4.4.9"
-  },
-  "packageManager": "yarn@3.6.3"
+  }
 }

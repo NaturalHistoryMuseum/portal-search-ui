@@ -1,3 +1,9 @@
+## v0.1.2 (2023-09-08)
+
+### Fix
+
+- set base path to make assets relative
+
 ## v0.1.1 (2023-09-08)
 
 ### Fix

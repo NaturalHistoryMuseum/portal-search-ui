@@ -4,9 +4,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "watch:vite": "vite --host 0.0.0.0 --port 9000",
-    "watch": "npm-run-all clean --parallel watch:*",
+    "watch": "npm-run-all clean watch:vite",
     "build:vite": "vite build",
-    "build": "NODE_ENV=production npm-run-all clean build:*"
+    "build": "NODE_ENV=production npm-run-all clean build:vite"
   },
   "dependencies": {
     "@nhm-data/zoa": "^0.3.0",

@@ -90,7 +90,7 @@ class Results {
 }
 
 class Record {
-
+    +String id
 }
 
 Results --> "many" Record

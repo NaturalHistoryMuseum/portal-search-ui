@@ -42,6 +42,7 @@ classDiagram
         +String parentId
         +Group parent
         +Array~Term~ terms
+        +Array~Group~ groups
     }
 
     class Term {

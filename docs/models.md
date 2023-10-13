@@ -30,10 +30,23 @@ classDiagram
         +generateQuery() : json
     }
 
+    class Package {
+        +String id
+        +String name
+        +String title
+        +Array~Resource~ resources
+    }
+
     class Resource {
         +String id
         +String name
         +Number version
+        +String titleField
+        +String imageField
+        +String imageDelimiter
+        +String imageLicence
+        +String packageId
+        +Package package
     }
 
     class Group {
@@ -61,6 +74,7 @@ classDiagram
     Query --> "1" Group
     Group "1" <--> "many" Term
     Group "0 or 1" <--> "many" Group
+    Package "1" <--> "many" Resource
 ```
 
 

@@ -1,5 +1,18 @@
 import { Model } from 'pinia-orm';
 
+export class Package extends Model {
+  static entity = 'packages';
+
+  static fields() {
+    return {
+      id: this.string(''),
+      name: this.string(''),
+      title: this.string(''),
+      resources: this.hasMany(Resource, 'packageId'),
+    };
+  }
+}
+
 export class Resource extends Model {
   static entity = 'resources';
 
@@ -8,6 +21,12 @@ export class Resource extends Model {
       id: this.string(''),
       name: this.string(''),
       version: this.number(0),
+      titleField: this.string(''),
+      imageField: this.string(''),
+      imageDelimiter: this.string(''),
+      imageLicence: this.string(''),
+      packageId: this.string(''),
+      package: this.belongsTo(Package, 'packageId'),
     };
   }
 }

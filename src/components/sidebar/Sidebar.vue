@@ -48,7 +48,9 @@
           <span class="resource-desc">{{ resourceDesc }}</span>
         </template>
       </div>
-      <div class="sidebar-form"></div>
+      <div class="sidebar-form">
+        <FormComponent />
+      </div>
     </div>
   </div>
 </template>
@@ -57,9 +59,10 @@
 import { ZoaToggleButton, ZoaMultiselect } from '@nhm-data/zoa';
 import { useRepo } from 'pinia-orm';
 import { Resource } from '../../store/query/models';
-import { computed, ref } from 'vue';
+import { computed, ref, defineAsyncComponent } from 'vue';
 import ModeTabs from './ModeTabs.vue';
 import { onClickOutside } from '@vueuse/core/index';
+import { Loading, Error } from '../loading';
 
 const tabs = ref(null);
 
@@ -153,19 +156,53 @@ const resourceDesc = computed(() => {
   }
   return `searching in ${selectedResources.value.length} resources`;
 });
+
+// form
+function loadComponent(filename) {
+  return defineAsyncComponent({
+    loader: () => import(filename),
+    loadingComponent: Loading,
+    delay: 200,
+    errorComponent: Error,
+    timeout: 10000,
+  });
+}
+const SpecimensAll = loadComponent('./form/SpecimensAll.vue');
+const SpecimensBot = loadComponent('./form/SpecimensBot.vue');
+const Unimplemented = loadComponent('./form/Unimplemented.vue');
+
+const FormComponent = computed(() => {
+  try {
+    if (tabs.value[0] === 'specimens') {
+      switch (tabs.value[1]) {
+        case 'all':
+          return SpecimensAll;
+        case 'bot':
+          return SpecimensBot;
+        default:
+          return Unimplemented;
+      }
+    } else {
+      return Unimplemented;
+    }
+  } catch {
+    return Unimplemented;
+  }
+});
 </script>
 
 <style lang="scss">
+@import '../palette';
+
 .sidebar {
-  display: grid;
-  grid-template-columns: 4em 1fr;
   overflow-y: scroll;
-  border-right: 2px solid #87999e;
+  border-right: 2px solid $primary;
   padding: 0 5px;
 }
 
 .sidebar-main {
   padding: 10px 5px;
+  margin-left: 4em;
 }
 
 .sidebar-header {
@@ -180,7 +217,7 @@ const resourceDesc = computed(() => {
     flex-grow: 1;
     font-size: 0.7em;
     font-style: italic;
-    color: #87999e;
+    color: $grey;
   }
 }
 
@@ -207,5 +244,11 @@ const resourceDesc = computed(() => {
 
 .extra-header {
   display: contents;
+}
+
+.sidebar-form {
+  display: grid;
+  gap: 1em;
+  padding: 8px;
 }
 </style>

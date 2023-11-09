@@ -30,6 +30,10 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useQueryStore } from '../../store/query';
+
+const queryStore = useQueryStore();
+
 const props = defineProps({
   modelValue: {
     type: Array,
@@ -59,6 +63,7 @@ const subTab = computed({
   set(newTab) {
     _subTab.value = newTab;
     emit('update:modelValue', [mainTab.value, newTab]);
+    queryStore.setRootGroup(`${mainTab.value}-${newTab || 'main'}`);
   },
 });
 const _mainTab = ref(null);
@@ -71,6 +76,7 @@ const mainTab = computed({
     subTab.value = subTabs.length > 0 ? subTabs[0] : null;
     _mainTab.value = newTab;
     emit('update:modelValue', [newTab, subTab.value]);
+    queryStore.setRootGroup(`${newTab}-${subTab.value || 'main'}`);
   },
 });
 
@@ -89,6 +95,8 @@ if (!_mainTab.value) {
   font-size: 0.8em;
   margin-right: 1em;
   height: 100%;
+  width: 4em;
+  position: fixed;
 }
 
 .tabs--main,

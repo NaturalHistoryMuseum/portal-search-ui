@@ -3,13 +3,21 @@
   "version": "0.1.2",
   "scripts": {
     "clean": "rimraf dist",
-    "watch:vite": "vite --host 0.1.2.0 --port 9000",
-    "watch": "npm-run-all clean watch:vite",
+    "watch:vite": "vite --host 0.0.0.0 --port 9000",
+    "watch": "NODE_ENV=development npm-run-all clean watch:vite",
     "build:vite": "vite build",
     "build": "NODE_ENV=production npm-run-all clean build:vite"
   },
   "dependencies": {
-    "@nhm-data/zoa": "^0.3.1",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.5",
+    "@nhm-data/zoa": "^0.7.0",
+    "@vueuse/core": "^10.5.0",
+    "axios": "1.6.0",
+    "dettle": "^1.0.1",
+    "pinia": "^2.1.6",
+    "pinia-orm": "^1.7.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {

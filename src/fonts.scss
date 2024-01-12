@@ -1,0 +1,285 @@
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Thin.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Thin.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Light.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Light.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Regular.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Regular.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Medium.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Medium.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-SemiBold.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-SemiBold.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Bold.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Bold.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Heavy.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-Heavy.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-ThinItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-ThinItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-LightItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-LightItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-RegularItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-RegularItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-MediumItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-MediumItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-SemiBoldItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-SemiBoldItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-BoldItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-BoldItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Text';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-HeavyItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopText-HeavyItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Thin.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Thin.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Light.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Light.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Regular.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Regular.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Medium.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Medium.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-SemiBold.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-SemiBold.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Bold.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Bold.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Heavy.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-Heavy.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-ThinItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-ThinItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-LightItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-LightItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-RegularItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-RegularItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-MediumItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-MediumItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-SemiBoldItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-SemiBoldItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-BoldItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-BoldItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'NHM Wallop Headline';
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-HeavyItalic.woff2')
+    format('woff2');
+  src: url('https://data.nhm.ac.uk/fonts/NHMWallopHeadline-HeavyItalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 900;
+}
+
+:host,
+body {
+  --zoa-body-font: 'NHM Wallop Text';
+  --zoa-header-font: 'NHM Wallop Headline';
+}

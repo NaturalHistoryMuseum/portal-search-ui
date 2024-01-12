@@ -35,12 +35,16 @@
               kind="alt"
               >Resources
             </zoa-toggle-button>
-            <zoa-multiselect
-              :options="resources"
-              class="popup"
-              item-name="resource"
-              :enable-search="true"
+            <zoa-input
+              zoa-type="multiselect"
+              label="Select resources"
               label-position="none"
+              class="popup"
+              :options="{
+                options: resources,
+                itemName: 'resource',
+                enableSearch: true,
+              }"
               v-show="showResources"
               v-model="selectedResources"
             />
@@ -56,7 +60,7 @@
 </template>
 
 <script setup>
-import { ZoaToggleButton, ZoaMultiselect } from '@nhm-data/zoa';
+import { ZoaToggleButton, ZoaInput } from '@nhm-data/zoa';
 import { useRepo } from 'pinia-orm';
 import { Resource } from '../../store/query/models';
 import { computed, ref, defineAsyncComponent } from 'vue';
@@ -167,8 +171,13 @@ function loadComponent(filename) {
     timeout: 10000,
   });
 }
+
 const SpecimensAll = loadComponent('./form/SpecimensAll.vue');
 const SpecimensBot = loadComponent('./form/SpecimensBot.vue');
+const SpecimensEnt = loadComponent('./form/SpecimensEnt.vue');
+const SpecimensMin = loadComponent('./form/SpecimensMin.vue');
+const SpecimensPal = loadComponent('./form/SpecimensPal.vue');
+const SpecimensZoo = loadComponent('./form/SpecimensZoo.vue');
 const Unimplemented = loadComponent('./form/Unimplemented.vue');
 
 const FormComponent = computed(() => {
@@ -179,6 +188,14 @@ const FormComponent = computed(() => {
           return SpecimensAll;
         case 'bot':
           return SpecimensBot;
+        case 'ent':
+          return SpecimensEnt;
+        case 'min':
+          return SpecimensMin;
+        case 'pal':
+          return SpecimensPal;
+        case 'zoo':
+          return SpecimensZoo;
         default:
           return Unimplemented;
       }

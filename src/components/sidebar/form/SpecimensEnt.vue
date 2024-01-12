@@ -2,20 +2,17 @@
   <zoa-input
     zoa-type="textbox"
     label="Search everything"
-    :options="{ placeholder: 'e.g. lepidoptera brazil' }"
+    :options="{ placeholder: 'e.g. bombus united kingdom' }"
     v-model="everything"
   />
 
   <div class="divider">Attributes</div>
-  <zoa-input
-    label="Taxonomy, synonym, or description"
-    grid-class="taxonomy-all"
-  >
+  <zoa-input label="Taxonomy or synonym" grid-class="taxonomy-all">
     <zoa-input
       zoa-type="textbox"
-      label="Taxonomy, synonym, or description"
+      label="Taxonomy or synonym"
       label-position="none"
-      :options="{ placeholder: 'e.g. felis catus or felidae' }"
+      :options="{ placeholder: 'e.g. lysandra coridon or carabidae' }"
       v-model="taxonomyAll"
     />
     <zoa-toggle-button
@@ -42,6 +39,16 @@
     }"
     v-model="typeStatus"
   />
+  <zoa-input
+    zoa-type="multiselect"
+    label="Preservative"
+    :options="{
+      placeholder: 'e.g. slide',
+      options: preservativeOptions,
+      enableSearch: true,
+    }"
+    v-model="preservative"
+  />
 
   <div class="divider">Catalogue</div>
   <zoa-input
@@ -50,18 +57,28 @@
     :options="{ placeholder: 'catalogue ID, barcode, occurrence ID, etc' }"
     v-model="specimenId"
   />
+  <zoa-input
+    zoa-type="multiselect"
+    label="Subdepartment"
+    :options="{
+      placeholder: 'e.g. small orders',
+      options: subdepartmentOptions,
+      enableSearch: true,
+    }"
+    v-model="subdepartment"
+  />
 
   <div class="divider">Origin</div>
   <zoa-input
     zoa-type="textbox"
     label="Location"
-    :options="{ placeholder: 'e.g. penrhyn mine or europe or coordinates' }"
+    :options="{ placeholder: 'e.g. tring or south america or coordinates' }"
     v-model="location"
   />
   <zoa-input
     zoa-type="textbox"
     label="Collector or donor"
-    :options="{ placeholder: 'e.g. anning' }"
+    :options="{ placeholder: 'e.g. cockayne' }"
     v-model="collectorDonor"
   />
   <zoa-input label="Collection date" grid-class="collection-date">
@@ -91,7 +108,7 @@
   <zoa-input
     zoa-type="textbox"
     label="Project or expedition"
-    :options="{ placeholder: 'e.g. birdwing digitisation or hms beagle' }"
+    :options="{ placeholder: 'e.g. icollections or hms beagle' }"
     v-model="projectExpedition"
   />
 
@@ -105,42 +122,62 @@
 </template>
 
 <script setup>
-import { ZoaInput, ZoaToggleButton } from '@nhm-data/zoa';
+import { ZoaToggleButton, ZoaInput } from '@nhm-data/zoa';
 import { ref, computed } from 'vue';
 import { useQueryStore } from '../../../store/query';
 import { useTerm, useDateTerm } from './assets/common';
-import { expandedTaxonomyAll } from './assets/schemas';
+import { expandedTaxonomyEnt } from './assets/schemas';
 
 const queryStore = useQueryStore();
-queryStore.resetGroup('specimens-all');
+queryStore.resetGroup('specimens-ent');
 
 const typeStatusOptions = ref([
   { value: 'Type', order: 0 },
-  { value: 'Non-type', order: 1 },
+  { value: 'Nontype', order: 1 },
   { value: 'Paratype', order: 2 },
-  { value: 'Holotype', order: 3 },
-  { value: 'Syntype', order: 4 },
-  { value: 'Isotype', order: 5 },
+  { value: 'Syntype', order: 3 },
+  { value: 'Holotype', order: 4 },
+  { value: 'Paralectotype', order: 5 },
   { value: 'Lectotype', order: 6 },
-  { value: 'Paralectotype', order: 7 },
-  { value: 'Original material', order: 8 },
-  { value: 'Isolectotype', order: 9 },
-  { value: 'Cotype', order: 10 },
-  { value: 'Figured', order: 11 },
-  { value: 'Isosyntype', order: 12 },
+  { value: 'Allotype', order: 7 },
+  { value: 'Neoparatype', order: 8 },
+  { value: 'Cotype', order: 9 },
+]);
+const subdepartmentOptions = ref([
+  { value: 'Lepidoptera', order: 0 },
+  { value: 'Small orders', order: 1 },
+  { value: 'Diptera and siphonaptera', order: 2 },
+  { value: 'Coleoptera', order: 3 },
+  { value: 'Hymenoptera', order: 4 },
+  { value: 'Molecular collections', order: 5 },
+  { value: 'Historical collections - insects', order: 6 },
+  { value: 'British and irish herbarium', order: 7 },
+]);
+const preservativeOptions = ref([
+  { value: 'Dry', order: 0 },
+  { value: 'Mounted', order: 1 },
+  { value: 'Slide', order: 2 },
+  { value: 'Pinned', order: 3 },
+  { value: 'Frozen', order: 4 },
+  { value: 'Pressed', order: 5 },
+  { value: 'Spirit', order: 6 },
+  { value: 'Carded', order: 7 },
+  { value: 'Liquid nitrogen', order: 8 },
+  { value: 'Papered', order: 9 },
 ]);
 
 const expandTaxonomy = ref(false);
 
 const everything = useTerm('everything', 'string', 'equals', ['*']);
 
-const taxonomyAll = useTerm('taxonomy-all', 'string', 'equals', [
+const taxonomyAll = useTerm('taxonomy-all', 'string', 'contains', [
   'scientificName',
   'higherClassification',
   'currentScientificName',
+  'determinationNames',
 ]);
 const expandedTaxonomy = ref(
-  expandedTaxonomyAll.map((x) => {
+  expandedTaxonomyEnt.map((x) => {
     return {
       widget: x.widget,
       term: useTerm(
@@ -152,11 +189,16 @@ const expandedTaxonomy = ref(
     };
   }),
 );
-
 const typeStatus = useTerm('type-status', 'string', 'equals', ['typeStatus']);
+const preservative = useTerm('preservative', 'string', 'equals', [
+  'preservative',
+]);
 
 const specimenId = useTerm('specimen-id', 'string', 'contains', [
   'catalogueId',
+]);
+const subdepartment = useTerm('subdepartment', 'string', 'equals', [
+  'subdepartment',
 ]);
 
 const location = useTerm('location', 'geo', null, []);

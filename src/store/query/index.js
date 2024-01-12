@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { get } from '../../utils/api';
 import { useRepo } from 'pinia-orm';
-import { Package, Resource, Group, Term } from './models';
+import { Package, Resource, Group, Term, Widget } from './models';
 import { ref, computed } from 'vue';
 
 export const useQueryStore = defineStore('query', () => {
@@ -9,6 +9,7 @@ export const useQueryStore = defineStore('query', () => {
   const packageRepo = computed(() => useRepo(Package));
   const groupRepo = computed(() => useRepo(Group));
   const termRepo = computed(() => useRepo(Term));
+  const widgetRepo = computed(() => useRepo(Widget));
 
   const _rootGroup = ref(null);
   const rootGroup = computed({
@@ -91,6 +92,7 @@ export const useQueryStore = defineStore('query', () => {
 
   return {
     init,
+    widgetRepo,
     termRepo,
     groupRepo,
     resourceRepo,

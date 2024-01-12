@@ -2,7 +2,7 @@
   <zoa-input
     zoa-type="textbox"
     label="Search everything"
-    :options="{ placeholder: 'e.g. helianthus netherlands' }"
+    :options="{ placeholder: 'e.g. apodemus spain' }"
     v-model="everything"
   />
 
@@ -12,7 +12,7 @@
       zoa-type="textbox"
       label="Taxonomy or synonym"
       label-position="none"
-      :options="{ placeholder: 'e.g. urtica dioica or solanaceae' }"
+      :options="{ placeholder: 'e.g. boops boops or chiroptera' }"
       v-model="taxonomyAll"
     />
     <zoa-toggle-button
@@ -40,16 +40,34 @@
     v-model="typeStatus"
   />
   <zoa-input
-    zoa-type="textbox"
-    label="Plant description"
-    :options="{ placeholder: 'e.g. tree' }"
-    v-model="plantDesc"
+    zoa-type="multiselect"
+    label="Sex"
+    :options="{
+      placeholder: 'e.g. undetermined',
+      options: sexOptions,
+      enableSearch: true,
+    }"
+    v-model="sex"
   />
   <zoa-input
-    zoa-type="textbox"
-    label="Habitat description"
-    :options="{ placeholder: 'e.g. clay' }"
-    v-model="habitatDesc"
+    zoa-type="multiselect"
+    label="Preparation"
+    :options="{
+      placeholder: 'e.g. spirit',
+      options: preparationOptions,
+      enableSearch: true,
+    }"
+    v-model="preparation"
+  />
+  <zoa-input
+    zoa-type="multiselect"
+    label="Item type"
+    :options="{
+      placeholder: 'e.g. egg',
+      options: itemTypeOptions,
+      enableSearch: true,
+    }"
+    v-model="itemType"
   />
 
   <div class="divider">Catalogue</div>
@@ -63,7 +81,7 @@
     zoa-type="multiselect"
     label="Subdepartment"
     :options="{
-      placeholder: 'e.g. algae',
+      placeholder: 'e.g. small orders',
       options: subdepartmentOptions,
       enableSearch: true,
     }"
@@ -73,32 +91,24 @@
     zoa-type="multiselect"
     label="Collection"
     :options="{
-      placeholder: 'e.g. sheet',
+      placeholder: 'e.g. nest',
       options: collectionOptions,
       enableSearch: true,
     }"
     v-model="collection"
-  />
-  <zoa-input
-    zoa-type="textbox"
-    label="Exsiccata"
-    :options="{
-      placeholder: 'e.g. australian algae',
-    }"
-    v-model="exsiccata"
   />
 
   <div class="divider">Origin</div>
   <zoa-input
     zoa-type="textbox"
     label="Location"
-    :options="{ placeholder: 'e.g. new forest or africa or coordinates' }"
+    :options="{ placeholder: 'e.g. naples or north america or coordinates' }"
     v-model="location"
   />
   <zoa-input
     zoa-type="textbox"
     label="Collector or donor"
-    :options="{ placeholder: 'e.g. hassler' }"
+    :options="{ placeholder: 'e.g. rothschild' }"
     v-model="collectorDonor"
   />
   <zoa-input label="Collection date" grid-class="collection-date">
@@ -128,7 +138,7 @@
   <zoa-input
     zoa-type="textbox"
     label="Project or expedition"
-    :options="{ placeholder: 'e.g. world brassicales or britannia' }"
+    :options="{ placeholder: 'e.g. cryoarks or hms penguin' }"
     v-model="projectExpedition"
   />
 
@@ -142,51 +152,87 @@
 </template>
 
 <script setup>
-import { ZoaToggleButton, ZoaInput } from '@nhm-data/zoa';
-import { ref, computed } from 'vue';
+import { ZoaInput, ZoaToggleButton } from '@nhm-data/zoa';
+import { computed, ref } from 'vue';
 import { useQueryStore } from '../../../store/query';
-import { useTerm, useDateTerm } from './assets/common';
-import { expandedTaxonomyBot } from './assets/schemas';
+import { useDateTerm, useTerm } from './assets/common';
+import { expandedTaxonomyZoo } from './assets/schemas';
 
 const queryStore = useQueryStore();
-queryStore.resetGroup('specimens-bot');
+queryStore.resetGroup('specimens-zoo');
 
 const typeStatusOptions = ref([
   { value: 'Type', order: 0 },
   { value: 'Nontype', order: 1 },
-  { value: 'Isotype', order: 2 },
-  { value: 'Syntype', order: 3 },
-  { value: 'Holotype', order: 4 },
-  { value: 'Original', order: 5 },
+  { value: 'Syntype', order: 2 },
+  { value: 'Holotype', order: 3 },
+  { value: 'Paratype', order: 4 },
+  { value: 'Cotype', order: 5 },
   { value: 'Lectotype', order: 6 },
-  { value: 'Isolectotype', order: 7 },
-  { value: 'Isosyntype', order: 8 },
-  { value: 'Paratype', order: 9 },
+  { value: 'Paralectotype', order: 7 },
+  { value: 'Topotype', order: 8 },
+  { value: 'Allotype', order: 9 },
 ]);
 const subdepartmentOptions = ref([
-  { value: 'Gen herb', order: 0 },
-  { value: 'Flowering plants', order: 1 },
-  { value: 'Bryophytes', order: 2 },
-  { value: 'British and Irish herbarium', order: 3 },
-  { value: 'Algae', order: 4 },
-  { value: 'Diatoms', order: 5 },
-  { value: 'Pteridophytes', order: 6 },
-  { value: 'Ferns', order: 7 },
-  { label: 'Lichens', order: 8, value: 'lichen' },
-  { label: 'Slime moulds', order: 9, value: 'slime mould' },
-  { value: 'Historical collections', order: 10 },
+  { label: 'Birds', order: 0, value: 'aves|birds' },
+  { label: 'Mammals', order: 1, value: 'mammal' },
+  { value: 'Mollusca', order: 2 },
+  { value: 'Fish', order: 3 },
+  { value: 'Crustacea', order: 4 },
+  { label: 'Reptiles & amphibians', order: 5, value: 'reptiles|amphibians' },
+  { value: 'Cnidaria', order: 6 },
+  { value: 'Bryozoa', order: 7 },
+  { value: 'Annelida', order: 8 },
+  { value: 'Parasitic worms', order: 9 },
+]);
+const sexOptions = ref([
+  { value: 'Male', order: 0 },
+  { value: 'Female', order: 1 },
+  {
+    label: 'Unknown',
+    order: 2,
+    value: 'unsexed|unknown|undetermined|indeterminate',
+  },
+  { value: 'Hermaphrodite', order: 3 },
+  { value: 'Juvenile', order: 4 },
+]);
+const preparationOptions = ref([
+  {
+    label: 'IMS/spirit/ethanol',
+    order: 0,
+    value: 'ims|spirit|ethanol|alcohol',
+  },
+  { value: 'Formalin', order: 1 },
+  { label: 'Dry', order: 2, value: 'dry|dried' },
+  { value: 'Slide', order: 3 },
+  { value: 'Glycerine', order: 4 },
+  { value: 'Stuffed', order: 5 },
+  { value: 'Skeleton', order: 6 },
+  { value: 'Dry frozen', order: 7 },
+]);
+const itemTypeOptions = ref([
+  { value: 'Skin', order: 0 },
+  { value: 'Skull', order: 1 },
+  { value: 'Spirit', order: 2 },
+  { value: 'Unknown', order: 3 },
+  { value: 'Egg', order: 4 },
+  { value: 'Slide', order: 5 },
+  { value: 'Wet', order: 6 },
+  { value: 'Shell only', order: 7 },
+  { value: 'Specimen', order: 8 },
+  { value: 'Skeleton', order: 9 },
 ]);
 const collectionOptions = ref([
-  { value: 'Sheet', order: 0 },
-  { value: 'Microscope', order: 1 },
-  { value: 'Packet', order: 2 },
-  { value: 'Box', order: 3 },
-  { value: 'Jar', order: 4 },
-  { value: 'Illustration', order: 5 },
-  { value: 'Vial', order: 6 },
-  { value: 'Photograph', order: 7 },
-  { value: 'Plate', order: 8 },
-  { value: 'Tree section', order: 9 },
+  { value: 'Bird group parent', order: 0 },
+  { value: 'Bird group part', order: 1 },
+  { value: 'Egg', order: 2 },
+  { value: 'Nest', order: 3 },
+  { value: 'Research use', order: 4 },
+  { value: 'Box', order: 5 },
+  { value: 'Slide', order: 6 },
+  { value: 'Specimen', order: 7 },
+  { value: 'Wet', order: 8 },
+  { value: 'Dry', order: 9 },
 ]);
 
 const expandTaxonomy = ref(false);
@@ -200,7 +246,7 @@ const taxonomyAll = useTerm('taxonomy-all', 'string', 'contains', [
   'determinationNames',
 ]);
 const expandedTaxonomy = ref(
-  expandedTaxonomyBot.map((x) => {
+  expandedTaxonomyZoo.map((x) => {
     return {
       widget: x.widget,
       term: useTerm(
@@ -213,22 +259,22 @@ const expandedTaxonomy = ref(
   }),
 );
 const typeStatus = useTerm('type-status', 'string', 'equals', ['typeStatus']);
-const plantDesc = useTerm('plant-desc', 'string', 'contains', [
-  'plantDescription',
+const sex = useTerm('sex', 'string', 'contains', ['sex']);
+const preparation = useTerm('preparation', 'string', 'contains', [
+  'preparation',
 ]);
-const habitatDesc = useTerm('habitat-desc', 'string', 'contains', ['habitat']);
+const itemType = useTerm('itemType', 'string', 'contains', ['kindOfObject']);
 
 const specimenId = useTerm('specimen-id', 'string', 'contains', [
   'catalogueId',
 ]);
-const subdepartment = useTerm('subdepartment', 'string', 'contains', [
+const subdepartment = useTerm('subdepartment', 'string', 'equals', [
   'subdepartment',
 ]);
-const collection = useTerm('collection', 'string', 'contains', [
-  'collectionKind',
+const collection = useTerm('collection', 'string', 'equals', [
   'kindOfCollection',
+  'collectionKind',
 ]);
-const exsiccata = useTerm('exsiccata', 'string', 'equals', ['exsiccata']);
 
 const location = useTerm('location', 'geo', null, []);
 const collectorDonor = useTerm('collector-donor', 'string', 'contains', [

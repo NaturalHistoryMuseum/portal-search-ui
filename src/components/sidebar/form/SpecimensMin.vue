@@ -2,20 +2,17 @@
   <zoa-input
     zoa-type="textbox"
     label="Search everything"
-    :options="{ placeholder: 'e.g. lepidoptera brazil' }"
+    :options="{ placeholder: 'e.g. topaz australia' }"
     v-model="everything"
   />
 
   <div class="divider">Attributes</div>
-  <zoa-input
-    label="Taxonomy, synonym, or description"
-    grid-class="taxonomy-all"
-  >
+  <zoa-input label="Taxonomy or description" grid-class="taxonomy-all">
     <zoa-input
       zoa-type="textbox"
-      label="Taxonomy, synonym, or description"
+      label="Taxonomy or description"
       label-position="none"
-      :options="{ placeholder: 'e.g. felis catus or felidae' }"
+      :options="{ placeholder: 'e.g. quartz or red clay' }"
       v-model="taxonomyAll"
     />
     <zoa-toggle-button
@@ -50,6 +47,26 @@
     :options="{ placeholder: 'catalogue ID, barcode, occurrence ID, etc' }"
     v-model="specimenId"
   />
+  <zoa-input
+    zoa-type="multiselect"
+    label="Subdepartment"
+    :options="{
+      placeholder: 'e.g. petrology',
+      options: subdepartmentOptions,
+      enableSearch: true,
+    }"
+    v-model="subdepartment"
+  />
+  <zoa-input
+    zoa-type="multiselect"
+    label="Collection"
+    :options="{
+      placeholder: 'e.g. ocean bottom deposits',
+      options: collectionOptions,
+      enableSearch: true,
+    }"
+    v-model="collection"
+  />
 
   <div class="divider">Origin</div>
   <zoa-input
@@ -61,7 +78,7 @@
   <zoa-input
     zoa-type="textbox"
     label="Collector or donor"
-    :options="{ placeholder: 'e.g. anning' }"
+    :options="{ placeholder: 'e.g. ludlam' }"
     v-model="collectorDonor"
   />
   <zoa-input label="Collection date" grid-class="collection-date">
@@ -91,7 +108,7 @@
   <zoa-input
     zoa-type="textbox"
     label="Project or expedition"
-    :options="{ placeholder: 'e.g. birdwing digitisation or hms beagle' }"
+    :options="{ placeholder: 'e.g. aoi or hms challenger' }"
     v-model="projectExpedition"
   />
 
@@ -105,42 +122,49 @@
 </template>
 
 <script setup>
-import { ZoaInput, ZoaToggleButton } from '@nhm-data/zoa';
+import { ZoaToggleButton, ZoaInput } from '@nhm-data/zoa';
 import { ref, computed } from 'vue';
 import { useQueryStore } from '../../../store/query';
 import { useTerm, useDateTerm } from './assets/common';
-import { expandedTaxonomyAll } from './assets/schemas';
+import { expandedTaxonomyMin } from './assets/schemas';
 
 const queryStore = useQueryStore();
-queryStore.resetGroup('specimens-all');
+queryStore.resetGroup('specimens-min');
 
 const typeStatusOptions = ref([
   { value: 'Type', order: 0 },
   { value: 'Non-type', order: 1 },
-  { value: 'Paratype', order: 2 },
-  { value: 'Holotype', order: 3 },
-  { value: 'Syntype', order: 4 },
-  { value: 'Isotype', order: 5 },
-  { value: 'Lectotype', order: 6 },
-  { value: 'Paralectotype', order: 7 },
-  { value: 'Original material', order: 8 },
-  { value: 'Isolectotype', order: 9 },
-  { value: 'Cotype', order: 10 },
-  { value: 'Figured', order: 11 },
-  { value: 'Isosyntype', order: 12 },
+]);
+const subdepartmentOptions = ref([
+  { value: 'Minerals', order: 0 },
+  { value: 'Petrology', order: 1 },
+  { value: 'Ores', order: 2 },
+  { value: 'Meteorites', order: 3 },
+]);
+const collectionOptions = ref([
+  { value: 'Minerals', order: 0 },
+  { value: 'Petrology', order: 1 },
+  { value: 'Ocean bottom deposits', order: 2 },
+  { value: 'Ores', order: 3 },
+  { value: 'Building stones', order: 4 },
+  { value: 'Meteorites', order: 5 },
+  { value: 'Gems', order: 6 },
+  { value: 'Impactites', order: 7 },
+  { value: 'Tektites', order: 8 },
 ]);
 
 const expandTaxonomy = ref(false);
 
 const everything = useTerm('everything', 'string', 'equals', ['*']);
 
-const taxonomyAll = useTerm('taxonomy-all', 'string', 'equals', [
+const taxonomyAll = useTerm('taxonomy-all', 'string', 'contains', [
   'scientificName',
   'higherClassification',
   'currentScientificName',
+  'determinationNames',
 ]);
 const expandedTaxonomy = ref(
-  expandedTaxonomyAll.map((x) => {
+  expandedTaxonomyMin.map((x) => {
     return {
       widget: x.widget,
       term: useTerm(
@@ -152,11 +176,16 @@ const expandedTaxonomy = ref(
     };
   }),
 );
-
 const typeStatus = useTerm('type-status', 'string', 'equals', ['typeStatus']);
+const collection = useTerm('collection', 'string', 'equals', [
+  'collectionKind',
+]);
 
 const specimenId = useTerm('specimen-id', 'string', 'contains', [
   'catalogueId',
+]);
+const subdepartment = useTerm('subdepartment', 'string', 'equals', [
+  'subdepartment',
 ]);
 
 const location = useTerm('location', 'geo', null, []);

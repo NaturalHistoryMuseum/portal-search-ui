@@ -55,11 +55,27 @@ export class Term extends Model {
       contentType: this.string(''),
       matchType: this.string(''),
       fieldNames: this.attr([]),
-      widgetType: this.string(''),
-      helpText: this.string(''),
       value: this.attr(null),
       parentId: this.string(''),
       parent: this.belongsTo(Group, 'parentId'),
+      widgetId: this.string(''),
+      widget: this.belongsTo(Widget, 'widgetId'),
+    };
+  }
+}
+
+export class Widget extends Model {
+  static entity = 'widgets';
+
+  static fields() {
+    return {
+      id: this.uid(),
+      zoaType: this.string('empty'),
+      classes: this.string(''),
+      label: this.string(''),
+      labelPosition: this.string('above'),
+      help: this.string(''),
+      options: this.attr({}),
     };
   }
 }

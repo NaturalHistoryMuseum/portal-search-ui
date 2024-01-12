@@ -1,3 +1,9 @@
+## v0.2.1 (2024-01-12)
+
+### Fix
+
+- use filepath in import function, not variable
+
 ## v0.2.0 (2024-01-12)
 
 ### Feature

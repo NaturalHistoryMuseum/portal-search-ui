@@ -162,9 +162,9 @@ const resourceDesc = computed(() => {
 });
 
 // form
-function loadComponent(filename) {
+function loadComponent(importFunction) {
   return defineAsyncComponent({
-    loader: () => import(filename),
+    loader: importFunction,
     loadingComponent: Loading,
     delay: 200,
     errorComponent: Error,
@@ -172,13 +172,13 @@ function loadComponent(filename) {
   });
 }
 
-const SpecimensAll = loadComponent('./form/SpecimensAll.vue');
-const SpecimensBot = loadComponent('./form/SpecimensBot.vue');
-const SpecimensEnt = loadComponent('./form/SpecimensEnt.vue');
-const SpecimensMin = loadComponent('./form/SpecimensMin.vue');
-const SpecimensPal = loadComponent('./form/SpecimensPal.vue');
-const SpecimensZoo = loadComponent('./form/SpecimensZoo.vue');
-const Unimplemented = loadComponent('./form/Unimplemented.vue');
+const SpecimensAll = loadComponent(() => import('./form/SpecimensAll.vue'));
+const SpecimensBot = loadComponent(() => import('./form/SpecimensBot.vue'));
+const SpecimensEnt = loadComponent(() => import('./form/SpecimensEnt.vue'));
+const SpecimensMin = loadComponent(() => import('./form/SpecimensMin.vue'));
+const SpecimensPal = loadComponent(() => import('./form/SpecimensPal.vue'));
+const SpecimensZoo = loadComponent(() => import('./form/SpecimensZoo.vue'));
+const Unimplemented = loadComponent(() => import('./form/Unimplemented.vue'));
 
 const FormComponent = computed(() => {
   try {

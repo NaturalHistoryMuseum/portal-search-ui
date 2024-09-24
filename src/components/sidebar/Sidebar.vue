@@ -112,6 +112,11 @@ const resources = computed(() => {
           })
           .get();
         break;
+      case 'samples':
+        res = repoStub
+          .where('id', (v) => v === '27c0e861-80b8-4833-b442-17e36ccd9d28')
+          .get();
+        break;
       case 'media':
         res = repoStub
           .where('imageField', (v) => {
@@ -178,6 +183,7 @@ const SpecimensEnt = loadComponent(() => import('./form/SpecimensEnt.vue'));
 const SpecimensMin = loadComponent(() => import('./form/SpecimensMin.vue'));
 const SpecimensPal = loadComponent(() => import('./form/SpecimensPal.vue'));
 const SpecimensZoo = loadComponent(() => import('./form/SpecimensZoo.vue'));
+const Samples = loadComponent(() => import('./form/Samples.vue'));
 const Unimplemented = loadComponent(() => import('./form/Unimplemented.vue'));
 
 const FormComponent = computed(() => {
@@ -199,6 +205,8 @@ const FormComponent = computed(() => {
         default:
           return Unimplemented;
       }
+    } else if (tabs.value[0] === 'samples') {
+      return Samples;
     } else {
       return Unimplemented;
     }

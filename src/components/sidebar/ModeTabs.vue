@@ -43,6 +43,7 @@ const emit = defineEmits(['update:modelValue']);
 
 const tabOptions = ref({
   specimens: ['all', 'bot', 'ent', 'min', 'pal', 'zoo'],
+  samples: ['all'],
   datasets: [],
   media: ['images', 'specimens', 'documents', 'drawers', '3d'],
   advanced: [],

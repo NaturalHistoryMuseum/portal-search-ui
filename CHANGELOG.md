@@ -1,3 +1,9 @@
+## v0.3.0 (2024-10-02)
+
+### Feature
+
+- add a samples search sidebar
+
 ## v0.2.1 (2024-01-12)
 
 ### Fix

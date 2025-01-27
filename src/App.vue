@@ -21,7 +21,7 @@ const q = computed(() => {
 </script>
 
 <style lang="scss">
-@import 'fonts';
+@use 'fonts';
 
 .container {
   display: grid;

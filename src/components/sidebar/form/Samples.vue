@@ -165,5 +165,5 @@ const hasMedia = useTerm('has-media', 'exists', null, ['associatedMedia']);
 </script>
 
 <style lang="scss">
-@import 'assets/specimens';
+@use 'assets/specimens';
 </style>

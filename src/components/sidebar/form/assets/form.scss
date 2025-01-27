@@ -1,12 +1,12 @@
-@import '../../../palette';
-@import '../../../vars';
+@use '../../../palette';
+@use '../../../vars';
 
 .divider {
   text-transform: uppercase;
   margin: 1em 0 0;
-  padding: 0 $h-pad;
+  padding: 0 vars.$h-pad;
   width: 100%;
-  border-bottom: 2px solid $grey;
-  color: $grey;
+  border-bottom: 2px solid palette.$grey;
+  color: palette.$grey;
   font-size: 0.8em;
 }

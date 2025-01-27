@@ -217,11 +217,11 @@ const FormComponent = computed(() => {
 </script>
 
 <style lang="scss">
-@import '../palette';
+@use '../palette';
 
 .sidebar {
   overflow-y: scroll;
-  border-right: 2px solid $primary;
+  border-right: 2px solid palette.$primary;
   padding: 0 5px;
 }
 
@@ -242,7 +242,7 @@ const FormComponent = computed(() => {
     flex-grow: 1;
     font-size: 0.7em;
     font-style: italic;
-    color: $grey;
+    color: palette.$grey;
   }
 }
 

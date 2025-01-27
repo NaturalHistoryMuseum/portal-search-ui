@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $v-pad: 8px;
 $h-pad: 16px;
 $padding: $v-pad $h-pad;
@@ -19,19 +21,19 @@ $breakpoints: (
 ) !default;
 
 @mixin media-less-than($breakpoint) {
-  @media (max-width: map-get($breakpoints, $breakpoint) - 1) {
+  @media (max-width: map.get($breakpoints, $breakpoint) - 1) {
     @content;
   }
 }
 
 @mixin media-from($breakpoint) {
-  @media (min-width: map-get($breakpoints, $breakpoint)) {
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
     @content;
   }
 }
 
 @mixin media-between($breakpoint-start, $breakpoint-end) {
-  @media (min-width: map-get($breakpoints, $breakpoint-start)) and (max-width: map-get($breakpoints, $breakpoint-end) - 1) {
+  @media (min-width: map.get($breakpoints, $breakpoint-start)) and (max-width: map.get($breakpoints, $breakpoint-end) - 1) {
     @content;
   }
 }

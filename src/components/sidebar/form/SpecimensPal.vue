@@ -399,7 +399,7 @@ const collectionDateEndMin = computed(() => {
 </script>
 
 <style lang="scss">
-@import 'assets/specimens';
+@use 'assets/specimens';
 
 .geologic-age-grid {
   display: grid;

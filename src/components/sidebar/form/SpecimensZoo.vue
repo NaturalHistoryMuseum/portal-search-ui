@@ -312,5 +312,5 @@ const collectionDateEndMin = computed(() => {
 </script>
 
 <style lang="scss">
-@import 'assets/specimens';
+@use 'assets/specimens';
 </style>

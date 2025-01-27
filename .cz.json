@@ -5,8 +5,6 @@
     "tag_format": "v$version",
     "update_changelog_on_bump": true,
     "changelog_incremental": true,
-    "version_files": [
-      "package.json"
-    ]
+    "version_provider": "npm"
   }
 }

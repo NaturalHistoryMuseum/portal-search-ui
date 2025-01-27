@@ -1,4 +1,4 @@
-name: Generate docs
+name: Generate GH page
 
 on:
   push:
@@ -7,16 +7,16 @@ on:
 
 jobs:
   build-pages:
-    if: "startsWith(github.event.head_commit.message, 'bump:')"
+    name: Rebuild and deploy page on version bump
     runs-on: ubuntu-latest
-    name: "Rebuild and deploy page on version bump"
+    if: "startsWith(github.event.head_commit.message, 'bump:')"
     steps:
-      - name: Check out
-        uses: actions/checkout@v3
+      - name: Checkout source code
+        uses: actions/checkout@v4
       - name: Install node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: 20
       - name: Install packages
         run: npm install
       - name: Build

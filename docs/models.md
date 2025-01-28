@@ -19,7 +19,6 @@ sequenceDiagram
     RB ->> RF : displayed to user
 ```
 
-
 # Query in Pinia
 
 ```mermaid
@@ -77,16 +76,13 @@ classDiagram
     Package "1" <--> "many" Resource
 ```
 
-
 # Query JSON
 
 The Pinia query will be translated into a JSON object defined by the query schema in [ckanext-versioned-datastore](https://github.com/NaturalHistoryMuseum/ckanext-versioned-datastore/tree/main/ckanext/versioned_datastore/theme/public/querySchemas). Documentation can also be found [on the Data Portal](https://data.nhm.ac.uk/api.html).
 
-
 # Search
 
 The query JSON is passed on to the [Data Portal API](https://data.nhm.ac.uk/api.html).
-
 
 # Results in Pinia
 

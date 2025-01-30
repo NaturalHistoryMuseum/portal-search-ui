@@ -9,22 +9,22 @@
     "build": "NODE_ENV=production npm-run-all clean build:vite"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/vue-fontawesome": "^3.0.5",
-    "@nhm-data/zoa": "^0.7.0",
-    "@vueuse/core": "^10.5.0",
-    "axios": "1.6.0",
-    "dettle": "^1.0.1",
-    "pinia": "^2.1.6",
-    "pinia-orm": "^1.7.2",
-    "vue": "^3.3.4"
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@nhm-data/zoa": "^0.11.0",
+    "@vueuse/core": "^12.5.0",
+    "axios": "^1.7.9",
+    "dettle": "^1.0.5",
+    "pinia": "^2.3.1",
+    "pinia-orm": "^1.10.1",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue": "^5.2.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^5.0.1",
-    "sass": "^1.66.1",
-    "vite": "^4.4.9"
+    "rimraf": "^6.0.1",
+    "sass": "^1.83.4",
+    "vite": "^6.0.11"
   }
 }

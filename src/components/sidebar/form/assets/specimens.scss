@@ -1,17 +1,17 @@
-@import 'form';
-@import '../../../vars';
+@forward 'form';
+@use '../../../vars';
 
 .taxonomy-all {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: $padding;
+  gap: vars.$padding;
   align-items: center;
 }
 
 .collection-date {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: $padding;
+  gap: vars.$padding;
   align-items: center;
 }
 
